@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://connection" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://connection" xmlns:intf="http://connection" xmlns:tns1="http://users" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://connection" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://users"/>
+   <element name="getData">
+    <complexType>
+     <sequence>
+      <element name="sqlquery" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDataResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getDataReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateCategory">
+    <complexType>
+     <sequence>
+      <element name="firstName" type="xsd:string"/>
+      <element name="lastName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateCategoryResponse">
+    <complexType>
+     <sequence>
+      <element name="updateCategoryReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createCategory">
+    <complexType>
+     <sequence>
+      <element name="catName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createCategoryResponse">
+    <complexType>
+     <sequence>
+      <element name="createCategoryReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteCategory">
+    <complexType>
+     <sequence>
+      <element name="delName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteCategoryResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteCategoryReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="signin">
+    <complexType>
+     <sequence>
+      <element name="emailId" type="xsd:string"/>
+      <element name="pwd" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="signinResponse">
+    <complexType>
+     <sequence>
+      <element name="signinReturn" type="tns1:User"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="signUp">
+    <complexType>
+     <sequence>
+      <element name="userid" type="xsd:int"/>
+      <element name="fname" type="xsd:string"/>
+      <element name="lname" type="xsd:string"/>
+      <element name="email" type="xsd:string"/>
+      <element name="passd" type="xsd:string"/>
+      <element name="dob" type="xsd:string"/>
+      <element name="gender" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="signUpResponse">
+    <complexType>
+     <sequence>
+      <element name="signUpReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="displayItem">
+    <complexType>
+     <sequence>
+      <element name="category" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="displayItemResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="displayItemReturn" type="tns1:Item"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="insertFormData">
+    <complexType>
+     <sequence>
+      <element name="type" type="xsd:string"/>
+      <element name="id" type="xsd:int"/>
+      <element name="aname" type="xsd:string"/>
+      <element name="aaddress" type="xsd:string"/>
+      <element name="areview" type="xsd:string"/>
+      <element name="arating" type="xsd:string"/>
+      <element name="acity" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="insertFormDataResponse">
+    <complexType>
+     <sequence>
+      <element name="insertFormDataReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchstring">
+    <complexType>
+     <sequence>
+      <element name="searchname" type="xsd:string"/>
+      <element name="city" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchstringResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="searchstringReturn" type="tns1:Search"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://users" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="User">
+    <sequence>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="dob" nillable="true" type="xsd:string"/>
+     <element name="emailId" nillable="true" type="xsd:string"/>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="gender" nillable="true" type="xsd:string"/>
+     <element name="lastLogin" nillable="true" type="xsd:dateTime"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="membershipId" type="xsd:long"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="registrationDate" nillable="true" type="xsd:string"/>
+     <element name="signupDate" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Item">
+    <sequence>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="itemAddress" nillable="true" type="xsd:string"/>
+     <element name="itemBanner" nillable="true" type="xsd:string"/>
+     <element name="itemId" type="xsd:int"/>
+     <element name="itemName" nillable="true" type="xsd:string"/>
+     <element name="itemRating" nillable="true" type="xsd:string"/>
+     <element name="itemReview" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Search">
+    <sequence>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="searchAddress" nillable="true" type="xsd:string"/>
+     <element name="searchId" type="xsd:int"/>
+     <element name="searchName" nillable="true" type="xsd:string"/>
+     <element name="searchRating" nillable="true" type="xsd:string"/>
+     <element name="searchReview" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="searchstringResponse">
+
+      <wsdl:part element="impl:searchstringResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateCategoryRequest">
+
+      <wsdl:part element="impl:updateCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchstringRequest">
+
+      <wsdl:part element="impl:searchstring" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="signinRequest">
+
+      <wsdl:part element="impl:signin" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createCategoryResponse">
+
+      <wsdl:part element="impl:createCategoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDataResponse">
+
+      <wsdl:part element="impl:getDataResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createCategoryRequest">
+
+      <wsdl:part element="impl:createCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteCategoryRequest">
+
+      <wsdl:part element="impl:deleteCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteCategoryResponse">
+
+      <wsdl:part element="impl:deleteCategoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="insertFormDataRequest">
+
+      <wsdl:part element="impl:insertFormData" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="signUpRequest">
+
+      <wsdl:part element="impl:signUp" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="signUpResponse">
+
+      <wsdl:part element="impl:signUpResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateCategoryResponse">
+
+      <wsdl:part element="impl:updateCategoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="displayItemRequest">
+
+      <wsdl:part element="impl:displayItem" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="signinResponse">
+
+      <wsdl:part element="impl:signinResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="displayItemResponse">
+
+      <wsdl:part element="impl:displayItemResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDataRequest">
+
+      <wsdl:part element="impl:getData" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="insertFormDataResponse">
+
+      <wsdl:part element="impl:insertFormDataResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Service">
+
+      <wsdl:operation name="getData">
+
+         <wsdl:input message="impl:getDataRequest" name="getDataRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getDataResponse" name="getDataResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateCategory">
+
+         <wsdl:input message="impl:updateCategoryRequest" name="updateCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateCategoryResponse" name="updateCategoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createCategory">
+
+         <wsdl:input message="impl:createCategoryRequest" name="createCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createCategoryResponse" name="createCategoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteCategory">
+
+         <wsdl:input message="impl:deleteCategoryRequest" name="deleteCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteCategoryResponse" name="deleteCategoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="signin">
+
+         <wsdl:input message="impl:signinRequest" name="signinRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:signinResponse" name="signinResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="signUp">
+
+         <wsdl:input message="impl:signUpRequest" name="signUpRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:signUpResponse" name="signUpResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="displayItem">
+
+         <wsdl:input message="impl:displayItemRequest" name="displayItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:displayItemResponse" name="displayItemResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="insertFormData">
+
+         <wsdl:input message="impl:insertFormDataRequest" name="insertFormDataRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:insertFormDataResponse" name="insertFormDataResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchstring">
+
+         <wsdl:input message="impl:searchstringRequest" name="searchstringRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:searchstringResponse" name="searchstringResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServiceSoapBinding" type="impl:Service">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDataRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDataResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="signin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="signinRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="signinResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="signUp">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="signUpRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="signUpResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="displayItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="displayItemRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="displayItemResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="insertFormData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="insertFormDataRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="insertFormDataResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchstring">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchstringRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchstringResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServiceService">
+
+      <wsdl:port binding="impl:ServiceSoapBinding" name="Service">
+
+         <wsdlsoap:address location="http://localhost:8080/Foodie/services/Service"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
